@@ -1,0 +1,77 @@
+<div>
+    <div>
+
+    </div>
+    <div>
+        <form [formGroup]="form" #frm="ngForm" autocomplete="off" id="form" fxLayout="row" fxLayoutAlign="start stretch"
+            fxLayout="row wrap" fxLayoutAlign="space-between center">
+            <mat-form-field appearance="outline" fxFlex="30%" fxFlex.xs="100%">
+                <mat-label>Tipo de Documento</mat-label>
+                <mat-select formControlName="tipoDocumento">
+                    <mat-option [value]="''">Seleccionar</mat-option>
+                    <mat-option [value]="1">Carné de extranjería</mat-option>
+                    <mat-option [value]="2">DNI</mat-option>
+                    <mat-option [value]="3">Pasaporte</mat-option>
+                    <mat-option [value]="4">Documento de identidad extranjero</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="30%" fxFlex.xs="100%">
+                <mat-label>Número Documento</mat-label>
+                <input matInput formControlName="numeroDocumento" maxlength="9" minlength="8">
+                <mat-error *ngIf="form.get('numeroDocumento').hasError('minlength')">Mínimo 8 dígitos.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="30%" fxFlex.xs="100%">
+                <mat-label>Rango de fecha</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Fecha inicio" formControlName="fechaInicio">
+                    <input matEndDate placeholder="Fecha fin" formControlName="fechaFin">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="30%" fxFlex.xs="100%">
+                <mat-label>Edad</mat-label>
+                <input matInput formControlName="numeroDosis" appBasico="integer" maxlength="2">
+            </mat-form-field>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <div fxLayoutGap="10px">
+                <button mat-flat-button color="primary" [disabled]="frm.invalid">Buscar</button>
+                <button mat-stroked-button color="primary" type="reset">Limpiar</button>
+            </div>
+        </div>
+    </div>
+    <div class="pdg-20">
+    </div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef fxFlex fxLayoutAlign="center center"> No. </th>
+                <td mat-cell *matCellDef="let element" fxFlex fxLayoutAlign="center center"> {{element.position}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef fxFlex fxLayoutAlign="center center"> Name </th>
+                <td mat-cell *matCellDef="let element" fxFlex fxLayoutAlign="center center"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef fxFlex fxLayoutAlign="center center"> Weight </th>
+                <td mat-cell *matCellDef="let element" fxFlex fxLayoutAlign="center center"> {{element.weight}} </td>
+            </ng-container>
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef fxFlex fxLayoutAlign="center center"> Symbol </th>
+                <td mat-cell *matCellDef="let element" fxFlex fxLayoutAlign="center center"> {{element.symbol}} </td>
+            </ng-container>
+            <ng-container matColumnDef="event" >
+                <th mat-header-cell *matHeaderCellDef fxFlex fxLayoutAlign="center center"></th>
+                <td mat-cell *matCellDef="let element" fxFlex fxLayoutAlign="center center">
+                    <button mat-button color="primary" (click)="detail()">
+                        <mat-icon>manage_search</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

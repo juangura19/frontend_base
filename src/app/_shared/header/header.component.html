@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawerToogle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Proyecto Base</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" [matMenuTriggerFor]="menu">
+        <mat-icon>person_outline</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+        <button mat-menu-item routerLink="/login">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="drawerToogle1()">
+        <mat-icon>settings</mat-icon>
+    </button>
+</mat-toolbar>

@@ -1,0 +1,48 @@
+<mat-drawer-container class="example-container contenido">
+    <mat-drawer #drawer fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)" class="example-sidenav"
+        fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="logo pdg-20" fxLayout="row" fxLayoutAlign="center center">
+            <img src="assets/images/logo.png" alt="" />
+        </div>
+        <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option>
+                <mat-icon mat-list-icon>fingerprint</mat-icon>
+                <div mat-line>Identity</div>
+            </mat-list-option>
+            <mat-list-option>
+                <mat-icon mat-list-icon>work_outline</mat-icon>
+                <div mat-line>Work</div>
+            </mat-list-option>
+            <mat-list-option>
+                <mat-icon mat-list-icon>lock_open</mat-icon>
+                <div mat-line>Security</div>
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-header [drawer]="drawer" [drawer1]="drawer1" ></app-header>
+        <div class="pdg-20">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+    <mat-drawer #drawer1 fixedInViewport="true" [attr.role]="(isHandset1$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset1$ | async) ? 'over' : 'side'" [opened]="!(isHandset1$ | async)" class="example-sidenav"
+        fxLayout="column" fxLayoutAlign="start stretch" position="end">
+        <mat-list>
+            <div mat-subheader>Folders</div>
+            <mat-list-item *ngFor="let folder of folders">
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <div mat-line>{{folder.name}}</div>
+              <div mat-line> {{folder.updated | date}} </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <div mat-subheader>Notes</div>
+            <mat-list-item *ngFor="let note of notes">
+              <mat-icon mat-list-icon>note</mat-icon>
+              <div mat-line>{{note.name}}</div>
+              <div mat-line> {{note.updated | date}} </div>
+            </mat-list-item>
+          </mat-list>
+    </mat-drawer>
+</mat-drawer-container>

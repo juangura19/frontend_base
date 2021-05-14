@@ -3,7 +3,7 @@ export const environment = {
   BASE_URL: '', //url del front
   
   BASE_URL_SERVICE_ADMIN: '', //url backend
-  ALLOWED_HOST_ADMIN: '', //url backend sin <http://>
+  ALLOWED_HOST: [], //url backend sin <http://>
 
   RECAPTCHA_SITE_KEY: '', //token recaptha
   ANALYTICS_ID: '', //token de google analtyis

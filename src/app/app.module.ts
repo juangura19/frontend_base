@@ -47,7 +47,7 @@ registerLocaleData(localPE, 'es-Pe');
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: environment.ALLOWED_HOST,
+        allowedDomains: environment.ALLOWED_HOSTS,
         disallowedRoutes: [],
       }
     }),
